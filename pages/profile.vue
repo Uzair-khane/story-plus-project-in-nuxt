@@ -1,13 +1,11 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref,onMounted } from "vue";
+const name=ref("")
+const email=ref("")
+const password=ref("")
+const confirmPassword=ref("")
+const profileImage=ref("")
 
-const name = ref("");
-const email = ref("");
-const password = ref("");
-const confirmPassword = ref("");
-const profileImage = ref("");
-
-// Load data from localStorage when page loads
 onMounted(() => {
   const user = JSON.parse(localStorage.getItem("user"));
   if (user) {
@@ -18,25 +16,21 @@ onMounted(() => {
     profileImage.value = user.profileImage || "";
   }
 });
-
-// Save updated data
-const updateProfile = () => {
-  if (password.value !== confirmPassword.value) {
-    alert("Passwords do not match!");
+ function updateProfile(){
+  if(password.value !== confirmPassword.value){
+    alert("Password Not match")
     return;
   }
-
-  const updatedUser = {
-    name: name.value,
-    email: email.value,
-    password: password.value,
-    profileImage: profileImage.value,
+  const updateUser={
+    name:name.value,
+    email:email.value,
+    password:password.value,
+    confirmPassword:confirmPassword.value,
+    profileImage:profileImage.value,
   };
-
-  localStorage.setItem("user", JSON.stringify(updatedUser));
-  alert("Profile updated successfully!");
-};
-
+  localStorage.setItem('user' , JSON.stringify(updateUser))
+  alert("Profile updated successfully!")
+ }
 // Handle image file change
 const handleImageUpload = (event) => {
   const file = event.target.files[0];
