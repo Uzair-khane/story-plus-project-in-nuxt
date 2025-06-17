@@ -8,6 +8,7 @@ const showForm = ref(false);
 const title = ref("");
 const description = ref("");
 const imageFile = ref();
+const loading = ref(false); 
 
 const { $axios } = useNuxtApp();
 const baseUrl = "https://story-backend-nu.vercel.app";
@@ -26,7 +27,7 @@ async function getStories() {
 }
 
 async function submitStory() {
-  if (!title.value || !description.value ) {
+  if (!title.value || !description.value) {
     alert("Please fill all fields.");
     return;
   }
@@ -36,6 +37,7 @@ async function submitStory() {
   formData.append("description", description.value);
   formData.append("image", imageFile.value);
 
+  loading.value = true; 
   try {
     const res = await $axios.post(`${baseUrl}/create-blog`, formData, {
       headers: {
@@ -56,6 +58,8 @@ async function submitStory() {
   } catch (err) {
     console.log("Error creating story:", err);
     alert("An error occurred.");
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -109,9 +113,25 @@ async function submitStory() {
 
           <button
             @click="submitStory"
-            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full"
+            :disabled="loading"
+            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            Submit Story
+            <!-- Spinner if loading -->
+            <svg
+              v-if="loading"
+              class="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
+            </svg>
+            <span>{{ loading ? "Submitting..." : "Submit Story" }}</span>
           </button>
         </div>
       </div>
