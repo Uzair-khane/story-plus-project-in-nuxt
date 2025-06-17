@@ -13,11 +13,13 @@ const logout = () => {
 <template>
   <div>
     <!-- Navbar -->
-    <nav class="fixed w-full h-[70px] flex justify-between  z-50">
+    <nav class="fixed w-full h-[70px] flex justify-between bg-sky-600 z-50">
       <h1 class="mt-[10px] text-3xl text-white ml-[50px]">StoryPlus</h1>
 
       <!-- Desktop Menu -->
-      <ul class="hidden sm:flex gap-[35px] mr-[80px] font-semibold text-white mt-[20px]">
+      <ul
+        class="hidden sm:flex gap-[35px] mr-[80px] font-semibold text-white mt-[20px]"
+      >
         <li class="hover:text-slate-800">
           <nuxt-link to="/">Home</nuxt-link>
         </li>
@@ -34,9 +36,21 @@ const logout = () => {
         <!-- Profile Dropdown -->
         <li class="relative group">
           <nuxt-link to="/profile">Profile</nuxt-link>
-          <div class="absolute hidden group-hover:block bg-white text-black mt-2 right-0 w-[200px] shadow-md rounded">
-            <nuxt-link to="/profile" href="#" class="block mb-2 p-3 hover:bg-amber-400 hover:w-full">Your Profile</nuxt-link>
-            <a href="#" @click.prevent="logout" class="block p-3 hover:bg-amber-400">Log out</a>
+          <div
+            class="absolute hidden group-hover:block bg-white text-black mt-2 right-0 w-[200px] shadow-md rounded"
+          >
+            <nuxt-link
+              to="/profile"
+              href="#"
+              class="block mb-2 p-3 hover:bg-amber-400 hover:w-full"
+              >Your Profile</nuxt-link
+            >
+            <a
+              href="#"
+              @click.prevent="logout"
+              class="block p-3 hover:bg-amber-400"
+              >Log out</a
+            >
           </div>
         </li>
       </ul>
@@ -65,14 +79,16 @@ const logout = () => {
       <div>
         <p class="font-semibold">Profile</p>
         <div class="ml-4 mt-2 space-y-2">
-          <nuxt-link to="/profile" class="block hover:text-amber-400">Your Profile</nuxt-link>
-          <a href="#" @click.prevent="logout" class="block hover:text-amber-400">Log out</a>
+          <nuxt-link to="/profile" class="block hover:text-amber-400"
+            >Your Profile</nuxt-link
+          >
+          <a href="#" @click.prevent="logout" class="block hover:text-amber-400"
+            >Log out</a
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
