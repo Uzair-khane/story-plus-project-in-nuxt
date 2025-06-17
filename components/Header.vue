@@ -6,7 +6,7 @@ const isMobileMenuOpen = ref(false);
 // Logout function for Nuxt 3
 const logout = () => {
   localStorage.removeItem("user");
-  navigateTo("/signup");
+  navigateTo("/login");
 };
 </script>
 

@@ -42,6 +42,9 @@ const handleImageUpload = (event) => {
     reader.readAsDataURL(file);
   }
 };
+function RenderHome(){
+  navigateTo("/")
+}
 </script>
 
 <template>
@@ -85,7 +88,7 @@ const handleImageUpload = (event) => {
         <input type="file" accept="image/*" @change="handleImageUpload" />
       </div>
 
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+      <button type="submit" @click="RenderHome()" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
         Update Profile
       </button>
     </form>

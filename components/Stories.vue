@@ -7,14 +7,14 @@ onMounted(() => {
   getStories();
 });
 
+const { $axios } = useNuxtApp();
+
+
 async function getStories() {
   try {
-    let res = await fetch(
+    let res = await $axios.get(
       "https://story-backend-nu.vercel.app/get-stories?page=1&type=&story="
     );
-    let data = await res.json();
-    console.log(data); // Yeh sirf console mein dikhata hai
-    stories.value = data.stories || []; // Yeh UI ke liye zaroori hai
   } catch (err) {
     console.log("data fetching error occure", err);
   }
