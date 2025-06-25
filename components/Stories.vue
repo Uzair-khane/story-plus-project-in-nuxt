@@ -108,7 +108,7 @@ async function submitStory() {
 
           <div>
             <label class="block font-medium">Image</label>
-            <input type="file" class="w-full border px-3 py-2 rounded" @change="e => imageFile.value = e.target.files[0]" />
+            <input type="file" class="w-full border px-3 py-2 rounded" @change="e => imageFile = e.target.files[0]" />
           </div>
 
           <button
